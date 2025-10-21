@@ -2,6 +2,25 @@
 .menu {
   padding: 2rem 0 6rem 0;
   min-height: 100vh;
+  background: 
+    linear-gradient(135deg, rgba(254, 247, 240, 0.8) 0%, rgba(254, 215, 170, 0.6) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="menu-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="%23f59e0b" opacity="0.05"/><circle cx="10" cy="10" r="1.5" fill="%23dc2626" opacity="0.03"/><circle cx="40" cy="40" r="1" fill="%2310b981" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23menu-pattern)"/></svg>');
+  background-size: cover, 100px 100px;
+  position: relative;
+}
+
+.menu::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .menu-loading {
@@ -14,39 +33,57 @@
 }
 
 .menu-loading p {
-  color: var(--neutral-600);
+  color: #6b7280;
   font-size: 1.125rem;
 }
 
 .menu-header {
   text-align: center;
   margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .menu-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--neutral-900);
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1f2937;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.menu-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, #dc2626, #f59e0b);
+  border-radius: 2px;
 }
 
 .menu-header p {
-  font-size: 1.125rem;
-  color: var(--neutral-600);
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .pdf-viewer-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 }
 
 .pdf-btn {
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
