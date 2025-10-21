@@ -6,6 +6,7 @@ import './Menu.css';
 
 // Fallback menu data - hardcoded for reliability
 const fallbackMenuData = [
+  // Veg Items
   {
     "id": 1,
     "name": "Bengaluru Vegetable Biryani",
@@ -32,6 +33,47 @@ const fallbackMenuData = [
   },
   {
     "id": 4,
+    "name": "Paneer Biryani",
+    "price": 220,
+    "description": "Delicious paneer biryani with soft cottage cheese and aromatic rice",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 5,
+    "name": "Mushroom Biryani",
+    "price": 190,
+    "description": "Flavorful mushroom biryani with fresh mushrooms and spices",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 6,
+    "name": "Dal Khichdi",
+    "price": 120,
+    "description": "Comforting dal khichdi with rice, lentils and vegetables",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 7,
+    "name": "Vegetable Pulao",
+    "price": 150,
+    "description": "Light and fragrant vegetable pulao with mixed vegetables",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 8,
+    "name": "Jeera Rice",
+    "price": 100,
+    "description": "Simple and aromatic jeera rice with cumin seeds",
+    "category": "Veg",
+    "image": ""
+  },
+  // Non-Veg Items
+  {
+    "id": 9,
     "name": "Chicken Biryani",
     "price": 250,
     "description": "Classic chicken biryani with tender pieces and aromatic rice",
@@ -39,10 +81,42 @@ const fallbackMenuData = [
     "image": ""
   },
   {
-    "id": 5,
+    "id": 10,
     "name": "Mutton Biryani",
     "price": 300,
     "description": "Rich mutton biryani with succulent meat and flavorful rice",
+    "category": "Non-Veg",
+    "image": ""
+  },
+  {
+    "id": 11,
+    "name": "Fish Biryani",
+    "price": 280,
+    "description": "Delicious fish biryani with fresh fish and aromatic spices",
+    "category": "Non-Veg",
+    "image": ""
+  },
+  {
+    "id": 12,
+    "name": "Egg Biryani",
+    "price": 200,
+    "description": "Flavorful egg biryani with boiled eggs and spices",
+    "category": "Non-Veg",
+    "image": ""
+  },
+  {
+    "id": 13,
+    "name": "Chicken Pulao",
+    "price": 220,
+    "description": "Light chicken pulao with tender chicken pieces",
+    "category": "Non-Veg",
+    "image": ""
+  },
+  {
+    "id": 14,
+    "name": "Mutton Pulao",
+    "price": 280,
+    "description": "Rich mutton pulao with succulent mutton pieces",
     "category": "Non-Veg",
     "image": ""
   }
@@ -57,30 +131,10 @@ const Menu = () => {
   const { addItem } = useCart();
 
   const fetchMenuItems = async () => {
-    try {
-      console.log('Fetching menu items...');
-      const API_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://farhanas-kitchen.onrender.com/api/menu'
-        : '/api/menu';
-      
-      const response = await fetch(API_URL);
-      console.log('Response status:', response.status);
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Menu data received from API:', data);
-        setMenuItems(data);
-      } else {
-        throw new Error('API not available');
-      }
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching menu from API, using fallback data:', error);
-      // Use fallback data when API fails
-      console.log('Using fallback menu data:', fallbackMenuData);
-      setMenuItems(fallbackMenuData);
-      setLoading(false);
-    }
+    // Always use fallback data for now to ensure menu shows
+    console.log('Using fallback menu data:', fallbackMenuData);
+    setMenuItems(fallbackMenuData);
+    setLoading(false);
   };
 
   const filterItems = useCallback(() => {
