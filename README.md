@@ -1,138 +1,171 @@
-# Cloud Kitchen Website
+# 🍽️ Farhana's Cloud Kitchen
 
-A modern, responsive food ordering website for cloud kitchens with WhatsApp integration and UPI payments.
+A modern, responsive cloud kitchen website with online ordering, payment integration, and WhatsApp notifications.
+
+## 🌟 Features
+
+- **📱 Responsive Design** - Works perfectly on mobile and desktop
+- **🍽️ Complete Menu** - 176+ items (Veg & Non-Veg) with categories
+- **🛒 Shopping Cart** - Add items with quantities
+- **📅 Delivery Scheduling** - Choose date and time slots
+- **💳 Payment Integration** - Google Pay/UPI integration
+- **📱 WhatsApp Integration** - Automatic order forwarding
+- **📄 PDF Menu Viewer** - View original PDF menus
+- **🔍 Search & Filter** - Find items quickly
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+ installed
-- npm or yarn package manager
+- Node.js (v14 or higher)
+- npm
 
 ### Installation
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/cloud-kitchen.git
-cd cloud-kitchen
 
-# Install all dependencies
-npm run install-all
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Luqmaan29/Farhanas-Kitchen.git
+   cd Farhanas-Kitchen
+   ```
 
-# Start development servers
-npm run dev
-```
+2. **Install dependencies**
+   ```bash
+   # Install backend dependencies
+   cd backend
+   npm install
+   
+   # Install frontend dependencies
+   cd ../frontend
+   npm install
+   ```
 
-### Development
-- Frontend: http://localhost:3000
-- Backend: http://localhost:3001
+3. **Run the application**
+   ```bash
+   # Terminal 1 - Start backend server
+   cd backend
+   node server.js
+   
+   # Terminal 2 - Start frontend server
+   cd frontend
+   npm start
+   ```
 
-## 📱 Features
-
-- **🍽️ Complete Menu:** 176+ items (Veg & Non-Veg)
-- **🛒 Shopping Cart:** Add/remove items with quantities
-- **💳 UPI Payments:** Direct Google Pay integration
-- **📱 WhatsApp Orders:** Automatic order forwarding
-- **📄 PDF Menus:** View original PDF menus
-- **📱 Mobile Responsive:** Works on all devices
-- **🎨 Modern UI:** Beautiful, food-focused design
-
-## 🛠️ Tech Stack
-
-- **Frontend:** React.js, Framer Motion, CSS3
-- **Backend:** Node.js, Express.js
-- **Payment:** UPI/Google Pay integration
-- **Communication:** WhatsApp API
-- **Deployment:** Vercel + Render
+4. **Open your browser**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:3001
 
 ## 📁 Project Structure
 
 ```
-cloud-kitchen/
-├── frontend/           # React frontend
-│   ├── src/
-│   │   ├── components/ # Reusable components
-│   │   ├── pages/      # Page components
-│   │   ├── hooks/      # Custom React hooks
-│   │   ├── styles/     # CSS files
-│   │   └── data/       # Menu data
-├── backend/            # Node.js backend
-│   ├── server.js       # Express server
-│   └── package.json    # Backend dependencies
-├── scripts/            # Utility scripts
-└── public/             # Static files
+Farhanas-Kitchen/
+├── backend/                 # Node.js/Express backend
+│   ├── server.js           # Main server file
+│   ├── menu.json           # Menu data
+│   └── package.json        # Backend dependencies
+├── frontend/               # React.js frontend
+│   ├── public/             # Static files
+│   │   ├── veg.pdf         # Veg menu PDF
+│   │   └── nonveg.pdf      # Non-veg menu PDF
+│   ├── src/                # React source code
+│   │   ├── components/     # Reusable components
+│   │   ├── pages/          # Page components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── styles/         # CSS files
+│   │   └── data/           # Data files
+│   └── package.json        # Frontend dependencies
+├── scripts/                # Utility scripts
+│   └── convert_to_json.py  # PDF to JSON converter
+└── README.md               # This file
 ```
 
-## 🔧 Configuration
+## ⚙️ Configuration
 
 ### Update Your Details
-1. **WhatsApp Number:** Update in `frontend/src/pages/Checkout.js` and `PaymentReturn.js`
-2. **UPI ID:** Update in `frontend/src/pages/Checkout.js`
-3. **QR Code:** Replace `frontend/src/assets/qr_code.png`
 
-### Environment Variables
-Create `.env` files for production:
+1. **WhatsApp Number** (in `frontend/src/pages/Checkout.js`):
+   ```javascript
+   const WHATSAPP_NUMBER = '9739998398'; // Your WhatsApp number
+   ```
 
-**Frontend/.env:**
+2. **UPI ID** (in `frontend/src/pages/Checkout.js`):
+   ```javascript
+   const UPI_ID = 'salt20293@okhdfcbank'; // Your UPI ID
+   ```
+
+### Menu Management
+
+- **Update Menu**: Edit `backend/menu.json`
+- **Add PDFs**: Place new PDFs in `frontend/public/`
+- **Convert PDFs**: Use `scripts/convert_to_json.py`
+
+## 🌐 Deployment
+
+### GitHub Pages (Frontend)
+```bash
+cd frontend
+npm run deploy
 ```
-REACT_APP_API_URL=https://your-backend-url.com
-```
 
-**Backend/.env:**
-```
-NODE_ENV=production
-PORT=3001
-```
+### Render (Backend)
+1. Connect your GitHub repository to Render
+2. Deploy the backend folder
+3. Update API URLs in frontend
 
-## 🚀 Deployment
+## 🧪 Testing
 
-### Free Hosting (Recommended)
-1. **Frontend:** Deploy to Vercel
-2. **Backend:** Deploy to Render
-3. **Domain:** Connect custom domain (optional)
+1. **Local Testing**: http://localhost:3000
+2. **Menu Loading**: Check if all 176 items load
+3. **Cart Functionality**: Add/remove items
+4. **Checkout Flow**: Test form validation
+5. **Payment Integration**: Test Google Pay redirect
+6. **WhatsApp Integration**: Verify order messages
 
-### Paid Hosting
-- **DigitalOcean:** $5/month droplet
-- **AWS:** Pay-as-you-scale
-- **Heroku:** $7/month
+## 📱 Mobile Features
 
-See `DEPLOYMENT_GUIDE.md` for detailed instructions.
+- Responsive design for all screen sizes
+- Touch-friendly interface
+- Mobile-optimized PDF viewer
+- Easy navigation
 
-## 📱 Mobile App
+## 🔧 Troubleshooting
 
-The website is PWA-ready and can be installed as a mobile app:
-1. Open website on mobile
-2. Tap "Add to Home Screen"
-3. Use like a native app
+### Common Issues
 
-## 🔒 Security
+1. **Port Already in Use**
+   ```bash
+   # Kill existing processes
+   pkill -f "node server.js"
+   pkill -f "react-scripts start"
+   ```
 
-- HTTPS enabled on all hosting platforms
-- Input validation and sanitization
-- CORS protection
-- Environment variable protection
+2. **Menu Not Loading**
+   - Check if backend is running on port 3001
+   - Verify `backend/menu.json` exists
+   - Check browser console for errors
 
-## 📊 Analytics
+3. **Payment Not Working**
+   - Verify UPI ID is correct
+   - Check if Google Pay is installed
+   - Test with different browsers
 
-- Google Analytics integration ready
-- Built-in Vercel analytics
-- Custom order tracking
+## 📞 Support
 
-## 🆘 Support
+For issues or questions:
+- Check the browser console for errors
+- Verify all dependencies are installed
+- Ensure both servers are running
 
-- **Documentation:** See `DEPLOYMENT_GUIDE.md`
-- **Issues:** Create GitHub issue
-- **Email:** your-email@example.com
+## 🎉 Features Overview
 
-## 📄 License
-
-MIT License - feel free to use for your cloud kitchen!
-
-## 🙏 Credits
-
-- React.js team for the amazing framework
-- Framer Motion for smooth animations
-- Express.js for the backend
-- All open source contributors
+- ✅ **Complete Menu System** (176 items)
+- ✅ **Shopping Cart** with quantities
+- ✅ **Delivery Scheduling** (date & time)
+- ✅ **Payment Integration** (Google Pay/UPI)
+- ✅ **WhatsApp Notifications**
+- ✅ **PDF Menu Viewer**
+- ✅ **Search & Filter**
+- ✅ **Mobile Responsive**
+- ✅ **Modern UI/UX**
 
 ---
 
-**Made with ❤️ for Cloud Kitchens**
+**Built with ❤️ for Farhana's Cloud Kitchen**
