@@ -67,17 +67,22 @@ Please confirm the order and delivery time. Thank you!`;
       };
       localStorage.setItem('pendingOrder', JSON.stringify(orderData));
 
-      // Log order to backend
-      const API_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://farhanas-kitchen.onrender.com/api/order'
-        : '/api/order';
-      await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData),
-      });
+      // Log order to backend (optional - won't fail if backend is down)
+      try {
+        const API_URL = process.env.NODE_ENV === 'production' 
+          ? 'https://farhanas-kitchen.onrender.com/api/order'
+          : '/api/order';
+        await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        });
+        console.log('Order logged to backend successfully');
+      } catch (error) {
+        console.log('Backend logging failed, but order will still be sent to WhatsApp:', error);
+      }
 
       // Create UPI payment link
       const amount = getTotalPrice();

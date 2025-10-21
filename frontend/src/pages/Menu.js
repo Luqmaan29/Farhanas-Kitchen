@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../hooks/useCart';
 import Cart from '../components/Cart';
+import menuData from '../data/menuData.json';
 import './Menu.css';
 
 const Menu = () => {
@@ -18,14 +19,23 @@ const Menu = () => {
       const API_URL = process.env.NODE_ENV === 'production' 
         ? 'https://farhanas-kitchen.onrender.com/api/menu'
         : '/api/menu';
+      
       const response = await fetch(API_URL);
       console.log('Response status:', response.status);
-      const data = await response.json();
-      console.log('Menu data received:', data);
-      setMenuItems(data);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Menu data received from API:', data);
+        setMenuItems(data);
+      } else {
+        throw new Error('API not available');
+      }
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching menu:', error);
+      console.error('Error fetching menu from API, using fallback data:', error);
+      // Use fallback data when API fails
+      console.log('Using fallback menu data:', menuData);
+      setMenuItems(menuData);
       setLoading(false);
     }
   };
