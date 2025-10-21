@@ -14,44 +14,6 @@ const Menu = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { addItem } = useCart();
 
-  // Fun function to get emojis based on dish names
-  const getDishEmoji = (dishName) => {
-    const name = dishName.toLowerCase();
-    
-    if (name.includes('biryani')) return '🍛';
-    if (name.includes('rice') || name.includes('pulao')) return '🍚';
-    if (name.includes('noodles')) return '🍜';
-    if (name.includes('chicken')) return '🍗';
-    if (name.includes('mutton') || name.includes('lamb')) return '🥩';
-    if (name.includes('fish')) return '🐟';
-    if (name.includes('egg')) return '🥚';
-    if (name.includes('paneer')) return '🧀';
-    if (name.includes('mushroom')) return '🍄';
-    if (name.includes('dal') || name.includes('lentil')) return '🫘';
-    if (name.includes('curry')) return '🍲';
-    if (name.includes('soup')) return '🍵';
-    if (name.includes('salad')) return '🥗';
-    if (name.includes('bread') || name.includes('roti')) return '🍞';
-    if (name.includes('sweet') || name.includes('dessert')) return '🍰';
-    if (name.includes('drink') || name.includes('juice')) return '🥤';
-    if (name.includes('tea') || name.includes('coffee')) return '☕';
-    if (name.includes('pizza')) return '🍕';
-    if (name.includes('burger')) return '🍔';
-    if (name.includes('sandwich')) return '🥪';
-    if (name.includes('pasta')) return '🍝';
-    if (name.includes('taco')) return '🌮';
-    if (name.includes('sushi')) return '🍣';
-    if (name.includes('fried')) return '🍤';
-    if (name.includes('grilled')) return '🔥';
-    if (name.includes('spicy')) return '🌶️';
-    if (name.includes('cheese')) return '🧀';
-    if (name.includes('vegetable') || name.includes('veg')) return '🥬';
-    if (name.includes('non') || name.includes('meat')) return '🍖';
-    
-    // Default emojis based on category
-    return '🍽️';
-  };
-
   const fetchMenuItems = async () => {
     // Always use complete menu data to ensure all items show
     console.log('Using complete menu data:', completeMenuData.length, 'items');
@@ -162,12 +124,9 @@ const Menu = () => {
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 className="menu-card"
               >
-                <div className={`card-content ${item.category.toLowerCase()}`}>
+                <div className="card-content">
                   <div className="category-badge">
-                    {item.category === 'Veg' ? '🥬 Veg' : '🍗 Non-Veg'}
-                  </div>
-                  <div className="dish-icon">
-                    {getDishEmoji(item.name)}
+                    {item.category}
                   </div>
                   <h3 className="dish-name">{item.name}</h3>
                   <p className="dish-description">
