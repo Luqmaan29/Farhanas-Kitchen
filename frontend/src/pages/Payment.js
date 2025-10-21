@@ -69,7 +69,7 @@ Please confirm the order and delivery time. Thank you!`;
 
       // Log order to backend
       const API_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://farhanas-kitchen-backend.onrender.com/api/order'
+        ? 'https://farhanas-kitchen.onrender.com/api/order'
         : '/api/order';
       await fetch(API_URL, {
         method: 'POST',

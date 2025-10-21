@@ -16,7 +16,7 @@ const Menu = () => {
     try {
       console.log('Fetching menu items...');
       const API_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://farhanas-kitchen-backend.onrender.com/api/menu'
+        ? 'https://farhanas-kitchen.onrender.com/api/menu'
         : '/api/menu';
       const response = await fetch(API_URL);
       console.log('Response status:', response.status);
