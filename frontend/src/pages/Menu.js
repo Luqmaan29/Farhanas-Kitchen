@@ -2,8 +2,51 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../hooks/useCart';
 import Cart from '../components/Cart';
-import menuData from '../data/menuData.json';
 import './Menu.css';
+
+// Fallback menu data - hardcoded for reliability
+const fallbackMenuData = [
+  {
+    "id": 1,
+    "name": "Bengaluru Vegetable Biryani",
+    "price": 180,
+    "description": "Authentic Bengaluru style vegetable biryani with aromatic spices",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 2,
+    "name": "Donne Veg Biryani",
+    "price": 180,
+    "description": "Traditional Donne style vegetable biryani served in eco-friendly leaf bowls",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 3,
+    "name": "Hyderabadi Vegetable Biryani",
+    "price": 200,
+    "description": "Famous Hyderabadi style vegetable biryani with rich flavors",
+    "category": "Veg",
+    "image": ""
+  },
+  {
+    "id": 4,
+    "name": "Chicken Biryani",
+    "price": 250,
+    "description": "Classic chicken biryani with tender pieces and aromatic rice",
+    "category": "Non-Veg",
+    "image": ""
+  },
+  {
+    "id": 5,
+    "name": "Mutton Biryani",
+    "price": 300,
+    "description": "Rich mutton biryani with succulent meat and flavorful rice",
+    "category": "Non-Veg",
+    "image": ""
+  }
+];
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -34,8 +77,8 @@ const Menu = () => {
     } catch (error) {
       console.error('Error fetching menu from API, using fallback data:', error);
       // Use fallback data when API fails
-      console.log('Using fallback menu data:', menuData);
-      setMenuItems(menuData);
+      console.log('Using fallback menu data:', fallbackMenuData);
+      setMenuItems(fallbackMenuData);
       setLoading(false);
     }
   };
