@@ -124,20 +124,10 @@ const Menu = () => {
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 className="menu-card"
               >
-                <div className="card-image">
-                  {item.image ? (
-                    <img src={item.image} alt={item.name} />
-                  ) : (
-                    <div className="placeholder-image">
-                      {item.category === 'Veg' ? '🥬' : '🍗'}
-                    </div>
-                  )}
+                <div className="card-content">
                   <div className="category-badge">
                     {item.category}
                   </div>
-                </div>
-
-                <div className="card-content">
                   <h3 className="dish-name">{item.name}</h3>
                   <p className="dish-description">
                     {item.description || 'Delicious and freshly prepared'}

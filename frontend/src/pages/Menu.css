@@ -194,6 +194,7 @@
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .menu-card:hover {
@@ -201,24 +202,9 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-.card-image {
+.card-content {
+  padding: 1.5rem;
   position: relative;
-  height: 200px;
-  background: linear-gradient(135deg, #fef7f0, #fed7aa);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.placeholder-image {
-  font-size: 4rem;
-  opacity: 0.7;
 }
 
 .category-badge {
@@ -231,10 +217,6 @@
   border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 600;
-}
-
-.card-content {
-  padding: 1.5rem;
 }
 
 .dish-name {
