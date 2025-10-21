@@ -9,6 +9,7 @@ const Payment = () => {
   const { items, getTotalPrice, clearCart } = useCart();
   const [customerDetails, setCustomerDetails] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [hasPendingOrder, setHasPendingOrder] = useState(false);
 
   // Configuration - Update these with your details
   const WHATSAPP_NUMBER = '9739998398'; 
@@ -22,6 +23,12 @@ const Payment = () => {
     } else {
       // Redirect to customer details if not available
       navigate('/customer-details');
+    }
+
+    // Check if there's a pending order (after payment)
+    const pendingOrder = localStorage.getItem('pendingOrder');
+    if (pendingOrder) {
+      setHasPendingOrder(true);
     }
   }, [navigate]);
 
@@ -207,19 +214,24 @@ Please confirm the order and delivery time. Thank you!`;
               )}
             </motion.button>
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="confirm-btn"
-              onClick={() => navigate('/payment-return')}
-              style={{ marginTop: '1rem' }}
-            >
-              📱 Confirm Order on WhatsApp
-            </motion.button>
+            {hasPendingOrder && (
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="confirm-btn"
+                onClick={() => navigate('/payment-return')}
+                style={{ marginTop: '1rem' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                📱 Confirm Order on WhatsApp
+              </motion.button>
+            )}
 
             <div className="payment-security">
               <p>🔒 Secure payment via UPI</p>
-              <p>📱 After payment, order will be sent to WhatsApp</p>
+              <p>📱 After payment, return to this page and click "Confirm Order"</p>
             </div>
           </motion.div>
         </div>
