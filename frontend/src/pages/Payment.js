@@ -68,7 +68,10 @@ Please confirm the order and delivery time. Thank you!`;
       localStorage.setItem('pendingOrder', JSON.stringify(orderData));
 
       // Log order to backend
-      await fetch('/api/order', {
+      const API_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://farhanas-kitchen-backend.onrender.com/api/order'
+        : '/api/order';
+      await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -15,7 +15,10 @@ const Menu = () => {
   const fetchMenuItems = async () => {
     try {
       console.log('Fetching menu items...');
-      const response = await fetch('/api/menu');
+      const API_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://farhanas-kitchen-backend.onrender.com/api/menu'
+        : '/api/menu';
+      const response = await fetch(API_URL);
       console.log('Response status:', response.status);
       const data = await response.json();
       console.log('Menu data received:', data);
