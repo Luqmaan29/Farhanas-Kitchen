@@ -4,6 +4,7 @@ import { CartProvider } from './hooks/useCart';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
+import TestMenu from './pages/TestMenu';
 import CustomerDetails from './pages/CustomerDetails';
 import Payment from './pages/Payment';
 import PaymentReturn from './pages/PaymentReturn';
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/test-menu" element={<TestMenu />} />
             <Route path="/customer-details" element={<CustomerDetails />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/payment-return" element={<PaymentReturn />} />
