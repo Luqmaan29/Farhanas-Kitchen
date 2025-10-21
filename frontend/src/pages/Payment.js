@@ -75,10 +75,8 @@ Please confirm the order and delivery time. Thank you!`;
       // Open UPI payment
       window.location.href = upiLink;
       
-      // Redirect to payment return page after a delay
-      setTimeout(() => {
-        navigate('/payment-return');
-      }, 2000);
+      // Show message to user
+      alert('Please complete the payment in your UPI app. After payment, return to this page to confirm your order.');
       
     } catch (error) {
       console.error('Error processing payment:', error);
@@ -207,6 +205,16 @@ Please confirm the order and delivery time. Thank you!`;
                   💳 Pay ₹{getTotalPrice()} via UPI
                 </>
               )}
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="confirm-btn"
+              onClick={() => navigate('/payment-return')}
+              style={{ marginTop: '1rem' }}
+            >
+              📱 Confirm Order on WhatsApp
             </motion.button>
 
             <div className="payment-security">

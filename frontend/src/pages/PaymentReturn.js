@@ -41,29 +41,43 @@ const PaymentReturn = () => {
 
   const generateOrderMessage = (order) => {
     const itemsList = order.items.map(item => 
-      `• ${item.name} x${item.quantity} = ₹${item.price * item.quantity}`
+      `   ${item.name} × ${item.quantity} = ₹${item.price * item.quantity}`
     ).join('\n');
 
-    return `🍽️ *New Order Received*
+    return `🏪 *FARHANA'S KITCHEN - NEW ORDER*
 
-👤 *Customer Details:*
-Name: ${order.customerDetails.name}
-Phone: ${order.customerDetails.phone}
-Address: ${order.customerDetails.address}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📅 *Delivery Date:* ${order.customerDetails.deliveryDate || 'Not specified'}
-🕐 *Delivery Time:* ${order.customerDetails.deliveryTime || 'Not specified'}
+👤 *CUSTOMER INFORMATION*
+   Name: ${order.customerDetails.name}
+   Phone: ${order.customerDetails.phone}
+   Address: ${order.customerDetails.address}
 
-📋 *Order Items:*
+📅 *DELIVERY SCHEDULE*
+   Date: ${order.customerDetails.deliveryDate || 'Not specified'}
+   Time: ${order.customerDetails.deliveryTime || 'Not specified'}
+
+🍽️ *ORDER DETAILS*
 ${itemsList}
 
-💰 *Total Amount: ₹${order.totalPrice}*
+💰 *PAYMENT SUMMARY*
+   Subtotal: ₹${order.totalPrice}
+   Payment Method: UPI Transfer ✅
+   Status: PAID
 
-⏰ *Order Time:* ${order.orderTime}
+⏰ *ORDER TIMELINE*
+   Placed: ${order.orderTime}
+   Estimated Prep Time: 30-45 minutes
 
-Payment: Done via UPI ✅
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Please confirm the order and delivery time. Thank you!`;
+📞 *NEXT STEPS*
+1. Please confirm this order
+2. Verify delivery address and time
+3. Confirm preparation start time
+4. Provide delivery updates
+
+Thank you for choosing Farhana's Kitchen! 🙏`;
   };
 
   const sendOrderToWhatsApp = (order) => {
@@ -140,7 +154,7 @@ Please confirm the order and delivery time. Thank you!`;
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                📱 View Order on WhatsApp
+                📱 Confirm Order on WhatsApp
               </motion.button>
               
               <motion.button
