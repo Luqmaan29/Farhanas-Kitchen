@@ -47,21 +47,21 @@ const PaymentReturn = () => {
     return `🍽️ *New Order Received*
 
 👤 *Customer Details:*
-Name: ${order.customer.name}
-Phone: ${order.customer.phone}
-Address: ${order.customer.address}
+Name: ${order.customerDetails.name}
+Phone: ${order.customerDetails.phone}
+Address: ${order.customerDetails.address}
 
-📅 *Delivery Date:* ${order.customer.deliveryDate || 'Not specified'}
-🕐 *Delivery Time:* ${order.customer.deliveryTime || 'Not specified'}
+📅 *Delivery Date:* ${order.customerDetails.deliveryDate || 'Not specified'}
+🕐 *Delivery Time:* ${order.customerDetails.deliveryTime || 'Not specified'}
 
 📋 *Order Items:*
 ${itemsList}
 
-💰 *Total Amount: ₹${order.total}*
+💰 *Total Amount: ₹${order.totalPrice}*
 
-⏰ *Order Time:* ${new Date(order.timestamp).toLocaleString()}
+⏰ *Order Time:* ${order.orderTime}
 
-Payment: Done via Google Pay ✅
+Payment: Done via UPI ✅
 
 Please confirm the order and delivery time. Thank you!`;
   };
@@ -124,10 +124,10 @@ Please confirm the order and delivery time. Thank you!`;
               <div className="order-summary">
                 <h3>Order Summary</h3>
                 <div className="order-details">
-                  <p><strong>Customer:</strong> {orderData.customer.name}</p>
-                  <p><strong>Phone:</strong> {orderData.customer.phone}</p>
-                  <p><strong>Address:</strong> {orderData.customer.address}</p>
-                  <p><strong>Total:</strong> ₹{orderData.total}</p>
+                  <p><strong>Customer:</strong> {orderData.customerDetails.name}</p>
+                  <p><strong>Phone:</strong> {orderData.customerDetails.phone}</p>
+                  <p><strong>Address:</strong> {orderData.customerDetails.address}</p>
+                  <p><strong>Total:</strong> ₹{orderData.totalPrice}</p>
                   <p><strong>Items:</strong> {orderData.items.length} items</p>
                 </div>
               </div>
@@ -185,7 +185,7 @@ Please confirm the order and delivery time. Thank you!`;
           <div className="action-buttons">
             <motion.button
               className="btn btn-primary"
-              onClick={() => navigate('/checkout')}
+              onClick={() => navigate('/payment')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

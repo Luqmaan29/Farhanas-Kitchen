@@ -58,29 +58,31 @@ Please confirm the order and delivery time. Thank you!`;
     setIsProcessing(true);
 
     try {
-      // Generate order message
-      const message = generateOrderMessage();
-      const encodedMessage = encodeURIComponent(message);
+      // Store order details for after payment
+      const orderData = {
+        customerDetails,
+        items,
+        totalPrice: getTotalPrice(),
+        orderTime: new Date().toLocaleString()
+      };
       
-      // Create WhatsApp URL
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+      // Store in localStorage for after payment
+      localStorage.setItem('pendingOrder', JSON.stringify(orderData));
       
-      // Open WhatsApp with order details
-      window.open(whatsappUrl, '_blank');
+      // Generate UPI payment link
+      const upiLink = `upi://pay?pa=${UPI_ID}&pn=Farhana's Kitchen&am=${getTotalPrice()}&cu=INR&tn=Food Order`;
       
-      // Clear cart and redirect to success page
-      clearCart();
-      localStorage.removeItem('customerDetails');
+      // Open UPI payment
+      window.location.href = upiLink;
       
-      // Show success message
-      alert('Order sent to WhatsApp! Please complete payment and confirm your order.');
-      
-      // Redirect to home page
-      navigate('/');
+      // Redirect to payment return page after a delay
+      setTimeout(() => {
+        navigate('/payment-return');
+      }, 2000);
       
     } catch (error) {
-      console.error('Error processing order:', error);
-      alert('There was an error sending your order. Please try again.');
+      console.error('Error processing payment:', error);
+      alert('There was an error processing payment. Please try again.');
       setIsProcessing(false);
     }
   };
@@ -168,10 +170,25 @@ Please confirm the order and delivery time. Thank you!`;
             transition={{ delay: 0.4, duration: 0.5 }}
             className="payment-methods-card"
           >
-            <h2>Payment</h2>
-            <p className="payment-description">
-              Click the button below to send your order to WhatsApp and complete payment
-            </p>
+            <h2>Payment Options</h2>
+            
+            <div className="qr-section">
+              <h3>Scan QR Code to Pay</h3>
+              <div className="qr-code">
+                <img src="/qr_code.png" alt="QR Code for Payment" />
+              </div>
+              <p className="qr-instructions">
+                Scan this QR code with any UPI app (GPay, PhonePe, Paytm) to pay ₹{getTotalPrice()}
+              </p>
+            </div>
+
+            <div className="upi-section">
+              <h3>Or Pay via UPI</h3>
+              <div className="upi-details">
+                <p><strong>UPI ID:</strong> {UPI_ID}</p>
+                <p><strong>Amount:</strong> ₹{getTotalPrice()}</p>
+              </div>
+            </div>
 
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -183,18 +200,18 @@ Please confirm the order and delivery time. Thank you!`;
               {isProcessing ? (
                 <>
                   <div className="spinner"></div>
-                  Sending Order...
+                  Processing Payment...
                 </>
               ) : (
                 <>
-                  📱 Send Order to WhatsApp (₹{getTotalPrice()})
+                  💳 Pay ₹{getTotalPrice()} via UPI
                 </>
               )}
             </motion.button>
 
             <div className="payment-security">
-              <p>🔒 Your order details are secure</p>
-              <p>📱 Order will be sent to WhatsApp for payment confirmation</p>
+              <p>🔒 Secure payment via UPI</p>
+              <p>📱 After payment, order will be sent to WhatsApp</p>
             </div>
           </motion.div>
         </div>
