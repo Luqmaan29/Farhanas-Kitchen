@@ -1,25 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import PDFViewer from '../components/PDFViewer';
+import { motion } from 'framer-motion';
 import './Home.css';
 
 const Home = () => {
-  const [showPDFViewer, setShowPDFViewer] = useState(false);
-  const [currentPDF, setCurrentPDF] = useState(null);
-
-  const handleViewPDF = (pdfType) => {
-    const pdfPath = pdfType === 'veg' ? '/pdfs/veg.pdf' : '/pdfs/nonveg.pdf';
-    const title = pdfType === 'veg' ? 'Veg Menu PDF' : 'Non-Veg Menu PDF';
-    console.log('Opening PDF:', pdfPath, 'Title:', title);
-    setCurrentPDF({ path: pdfPath, title });
-    setShowPDFViewer(true);
-  };
-
-  const handleClosePDF = () => {
-    setShowPDFViewer(false);
-    setCurrentPDF(null);
-  };
 
   return (
     <div className="home">
@@ -132,35 +116,6 @@ const Home = () => {
             </motion.div>
           </div>
           
-          {/* PDF Menu Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="pdf-menu-section"
-          >
-            <h3>View Our Complete Menu</h3>
-            <p>Browse our full menu in PDF format</p>
-            <div className="pdf-menu-buttons">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="pdf-menu-btn veg-pdf-btn"
-                onClick={() => handleViewPDF('veg')}
-              >
-                📄 Veg Menu PDF
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="pdf-menu-btn nonveg-pdf-btn"
-                onClick={() => handleViewPDF('nonveg')}
-              >
-                📄 Non-Veg Menu PDF
-              </motion.button>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -182,17 +137,6 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* PDF Viewer */}
-      <AnimatePresence>
-        {showPDFViewer && currentPDF && (
-          <PDFViewer
-            pdfPath={currentPDF.path}
-            title={currentPDF.title}
-            onClose={handleClosePDF}
-          />
-        )}
-      </AnimatePresence>
     </div>
   );
 };

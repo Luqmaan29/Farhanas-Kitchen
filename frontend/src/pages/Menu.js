@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useCart } from '../hooks/useCart';
 import Cart from '../components/Cart';
-import PDFViewer from '../components/PDFViewer';
 import './Menu.css';
 
 const Menu = () => {
@@ -11,8 +10,6 @@ const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [showPDFViewer, setShowPDFViewer] = useState(false);
-  const [currentPDF, setCurrentPDF] = useState(null);
   const { addItem } = useCart();
 
   const fetchMenuItems = async () => {
@@ -62,19 +59,6 @@ const Menu = () => {
     addItem(item);
   };
 
-  const handleViewPDF = (pdfType) => {
-    const pdfPath = pdfType === 'veg' ? '/pdfs/veg.pdf' : '/pdfs/nonveg.pdf';
-    const title = pdfType === 'veg' ? 'Veg Menu PDF' : 'Non-Veg Menu PDF';
-    console.log('Opening PDF:', pdfPath, 'Title:', title);
-    setCurrentPDF({ path: pdfPath, title });
-    setShowPDFViewer(true);
-  };
-
-  const handleClosePDF = () => {
-    setShowPDFViewer(false);
-    setCurrentPDF(null);
-  };
-
   if (loading) {
     return (
       <div className="menu-loading">
@@ -96,25 +80,6 @@ const Menu = () => {
         >
           <h1>Our Delicious Menu</h1>
           <p>Choose from our wide variety of fresh and tasty dishes</p>
-          
-          <div className="pdf-viewer-buttons">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="pdf-btn veg-pdf-btn"
-              onClick={() => handleViewPDF('veg')}
-            >
-              📄 View Veg Menu PDF
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="pdf-btn nonveg-pdf-btn"
-              onClick={() => handleViewPDF('nonveg')}
-            >
-              📄 View Non-Veg Menu PDF
-            </motion.button>
-          </div>
         </motion.div>
 
         {/* Filters */}
@@ -218,17 +183,6 @@ const Menu = () => {
 
       {/* Floating Cart */}
       <Cart />
-
-      {/* PDF Viewer */}
-      <AnimatePresence>
-        {showPDFViewer && currentPDF && (
-          <PDFViewer
-            pdfPath={currentPDF.path}
-            title={currentPDF.title}
-            onClose={handleClosePDF}
-          />
-        )}
-      </AnimatePresence>
     </div>
   );
 };

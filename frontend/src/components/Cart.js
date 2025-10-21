@@ -128,7 +128,7 @@ const Cart = () => {
                     Clear Cart
                   </button>
                   <Link
-                    to="/checkout"
+                    to="/customer-details"
                     className="btn btn-primary"
                     onClick={() => setIsOpen(false)}
                   >
