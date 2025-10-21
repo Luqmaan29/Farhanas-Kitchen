@@ -17,7 +17,7 @@ app.use('/pdfs', express.static(path.join(__dirname, '../frontend/public')));
 // Serve menu data
 app.get('/api/menu', (req, res) => {
   try {
-    const menuPath = '/Users/luqmaan/Desktop/Farhanas_Kitchen/frontend/src/data/menu.json';
+    const menuPath = path.join(__dirname, '../frontend/src/data/menu.json');
     console.log('Reading menu from:', menuPath);
     const menuData = JSON.parse(fs.readFileSync(menuPath, 'utf8'));
     console.log('Menu data loaded:', menuData.length, 'items');
