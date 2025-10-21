@@ -1,4 +1,4 @@
-# 🍽️ Farhana's Cloud Kitchen
+# 🍽️ Farhana's Kitchen
 
 A modern, responsive cloud kitchen website with online ordering, payment integration, and WhatsApp notifications.
 

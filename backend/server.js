@@ -54,6 +54,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🍱 Cloud Kitchen Server running on port ${PORT}`);
+  console.log(`🍱 Farhana's Kitchen Server running on port ${PORT}`);
   console.log(`📱 API available at http://localhost:${PORT}/api`);
 });

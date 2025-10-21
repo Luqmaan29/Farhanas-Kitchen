@@ -21,7 +21,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              🍱 Cloud Kitchen
+              🍱 Farhana's Kitchen
             </motion.div>
           </Link>
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🍽️ Starting Farhana's Cloud Kitchen..."
+echo "🍽️ Starting Farhana's Kitchen..."
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then

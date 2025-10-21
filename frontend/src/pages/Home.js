@@ -21,8 +21,8 @@ const Home = () => {
               className="hero-text"
             >
               <h1 className="hero-title">
-                Delicious Food
-                <span className="highlight"> Delivered Fresh</span>
+                Welcome to
+                <span className="highlight"> Farhana's Kitchen</span>
               </h1>
               <p className="hero-subtitle">
                 Experience the finest flavors from our cloud kitchen. 
