@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Farhanas-Kitchen/static/css/main.dc159634.css",
-    "main.js": "/Farhanas-Kitchen/static/js/main.9b33adf8.js",
+    "main.css": "/Farhanas-Kitchen/static/css/main.dc20a850.css",
+    "main.js": "/Farhanas-Kitchen/static/js/main.18e8f6e0.js",
     "index.html": "/Farhanas-Kitchen/index.html",
-    "main.dc159634.css.map": "/Farhanas-Kitchen/static/css/main.dc159634.css.map",
-    "main.9b33adf8.js.map": "/Farhanas-Kitchen/static/js/main.9b33adf8.js.map"
+    "main.dc20a850.css.map": "/Farhanas-Kitchen/static/css/main.dc20a850.css.map",
+    "main.18e8f6e0.js.map": "/Farhanas-Kitchen/static/js/main.18e8f6e0.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc159634.css",
-    "static/js/main.9b33adf8.js"
+    "static/css/main.dc20a850.css",
+    "static/js/main.18e8f6e0.js"
   ]
 }
