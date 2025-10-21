@@ -51,6 +51,9 @@ Name: ${order.customer.name}
 Phone: ${order.customer.phone}
 Address: ${order.customer.address}
 
+📅 *Delivery Date:* ${order.customer.deliveryDate || 'Not specified'}
+🕐 *Delivery Time:* ${order.customer.deliveryTime || 'Not specified'}
+
 📋 *Order Items:*
 ${itemsList}
 

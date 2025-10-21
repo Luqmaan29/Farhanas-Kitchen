@@ -10,7 +10,9 @@ const Checkout = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    address: ''
+    address: '',
+    deliveryDate: '',
+    deliveryTime: ''
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,7 +51,22 @@ const Checkout = () => {
     }
     
     if (!formData.address.trim()) {
-      newErrors.address = 'Address is required';
+      newErrors.address = 'Delivery address is required';
+    }
+
+    if (!formData.deliveryDate.trim()) {
+      newErrors.deliveryDate = 'Delivery date is required';
+    } else {
+      const selectedDate = new Date(formData.deliveryDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (selectedDate < today) {
+        newErrors.deliveryDate = 'Delivery date cannot be in the past';
+      }
+    }
+
+    if (!formData.deliveryTime.trim()) {
+      newErrors.deliveryTime = 'Delivery time is required';
     }
     
     setErrors(newErrors);
@@ -66,6 +83,9 @@ const Checkout = () => {
 Name: ${formData.name}
 Phone: +91${formData.phone}
 Address: ${formData.address}
+
+📅 Delivery Date: ${formData.deliveryDate}
+🕐 Delivery Time: ${formData.deliveryTime}
 
 Order Details:
 ${orderItems}
@@ -207,6 +227,45 @@ Please confirm the order and delivery time. Thank you!`;
                   rows="4"
                 />
                 {errors.address && <span className="error-text">{errors.address}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="deliveryDate">Delivery Date *</label>
+                <input
+                  type="date"
+                  id="deliveryDate"
+                  name="deliveryDate"
+                  value={formData.deliveryDate}
+                  onChange={handleInputChange}
+                  className={errors.deliveryDate ? 'error' : ''}
+                  min={new Date().toISOString().split('T')[0]}
+                />
+                {errors.deliveryDate && <span className="error-text">{errors.deliveryDate}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="deliveryTime">Delivery Time *</label>
+                <select
+                  id="deliveryTime"
+                  name="deliveryTime"
+                  value={formData.deliveryTime}
+                  onChange={handleInputChange}
+                  className={errors.deliveryTime ? 'error' : ''}
+                >
+                  <option value="">Select delivery time</option>
+                  <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                  <option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+                  <option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
+                  <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+                  <option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+                  <option value="4:00 PM - 5:00 PM">4:00 PM - 5:00 PM</option>
+                  <option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
+                  <option value="6:00 PM - 7:00 PM">6:00 PM - 7:00 PM</option>
+                  <option value="7:00 PM - 8:00 PM">7:00 PM - 8:00 PM</option>
+                  <option value="8:00 PM - 9:00 PM">8:00 PM - 9:00 PM</option>
+                  <option value="9:00 PM - 10:00 PM">9:00 PM - 10:00 PM</option>
+                </select>
+                {errors.deliveryTime && <span className="error-text">{errors.deliveryTime}</span>}
               </div>
             </motion.div>
 
