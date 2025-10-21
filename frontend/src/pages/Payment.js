@@ -58,53 +58,29 @@ Please confirm the order and delivery time. Thank you!`;
     setIsProcessing(true);
 
     try {
-      // Store order details in localStorage for after payment
-      const orderData = {
-        customer: customerDetails,
-        items: items,
-        total: getTotalPrice(),
-        timestamp: new Date().toISOString()
-      };
-      localStorage.setItem('pendingOrder', JSON.stringify(orderData));
-
-      // Log order to backend (optional - won't fail if backend is down)
-      try {
-        const API_URL = process.env.NODE_ENV === 'production' 
-          ? 'https://farhanas-kitchen.onrender.com/api/order'
-          : '/api/order';
-        await fetch(API_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(orderData),
-        });
-        console.log('Order logged to backend successfully');
-      } catch (error) {
-        console.log('Backend logging failed, but order will still be sent to WhatsApp:', error);
-      }
-
-      // Create UPI payment link
-      const amount = getTotalPrice();
-      const upiUrl = `upi://pay?pa=${UPI_ID}&pn=Cloud%20Kitchen&am=${amount}&cu=INR&tn=Food%20Order`;
+      // Generate order message
+      const message = generateOrderMessage();
+      const encodedMessage = encodeURIComponent(message);
       
-      // Try to open UPI app, fallback to Google Pay
-      try {
-        window.location.href = upiUrl;
-      } catch (error) {
-        // Fallback to Google Pay
-        const googlePayUrl = `https://pay.google.com/gp/v/save/${UPI_ID}`;
-        window.location.href = googlePayUrl;
-      }
+      // Create WhatsApp URL
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
       
-      // Redirect to payment return page after a delay
-      setTimeout(() => {
-        window.location.href = '/payment-return';
-      }, 3000);
+      // Open WhatsApp with order details
+      window.open(whatsappUrl, '_blank');
+      
+      // Clear cart and redirect to success page
+      clearCart();
+      localStorage.removeItem('customerDetails');
+      
+      // Show success message
+      alert('Order sent to WhatsApp! Please complete payment and confirm your order.');
+      
+      // Redirect to home page
+      navigate('/');
       
     } catch (error) {
       console.error('Error processing order:', error);
-      alert('There was an error processing your order. Please try again.');
+      alert('There was an error sending your order. Please try again.');
       setIsProcessing(false);
     }
   };
@@ -194,7 +170,7 @@ Please confirm the order and delivery time. Thank you!`;
           >
             <h2>Payment</h2>
             <p className="payment-description">
-              Click the button below to pay securely with Google Pay
+              Click the button below to send your order to WhatsApp and complete payment
             </p>
 
             <motion.button
@@ -207,18 +183,18 @@ Please confirm the order and delivery time. Thank you!`;
               {isProcessing ? (
                 <>
                   <div className="spinner"></div>
-                  Processing...
+                  Sending Order...
                 </>
               ) : (
                 <>
-                  💳 Pay ₹{getTotalPrice()} with Google Pay
+                  📱 Send Order to WhatsApp (₹{getTotalPrice()})
                 </>
               )}
             </motion.button>
 
             <div className="payment-security">
-              <p>🔒 Your payment is secure and encrypted</p>
-              <p>📱 You'll be redirected to Google Pay for payment</p>
+              <p>🔒 Your order details are secure</p>
+              <p>📱 Order will be sent to WhatsApp for payment confirmation</p>
             </div>
           </motion.div>
         </div>
