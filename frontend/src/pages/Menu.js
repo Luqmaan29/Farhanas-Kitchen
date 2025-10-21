@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../hooks/useCart';
 import Cart from '../components/Cart';
 import './Menu.css';
