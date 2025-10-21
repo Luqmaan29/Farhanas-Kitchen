@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cloud-kitchen/static/css/main.dc159634.css",
+    "main.js": "/cloud-kitchen/static/js/main.9b33adf8.js",
+    "index.html": "/cloud-kitchen/index.html",
+    "main.dc159634.css.map": "/cloud-kitchen/static/css/main.dc159634.css.map",
+    "main.9b33adf8.js.map": "/cloud-kitchen/static/js/main.9b33adf8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc159634.css",
+    "static/js/main.9b33adf8.js"
+  ]
+}
